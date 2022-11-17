@@ -1,4 +1,3 @@
-
 package cars_tw.model;
 
 import cars_tw.entity.Usuarios;
@@ -7,7 +6,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
 
 public class UsuariosModelImpl implements IUsuariosModel {
 
@@ -44,13 +42,27 @@ public class UsuariosModelImpl implements IUsuariosModel {
         return listaUsuarios;
     }
 
-    public static void main(String[] args) {
-        IUsuariosModel model = new UsuariosModelImpl();
-        Usuarios user = new Usuarios();
-        user.setNombre("dos");
-        model.insertarRegistro(user);
-        List<Usuarios> listauser = model.obtenerRegistros();
-
-        System.out.println(listauser.size());
+    @Override
+    public void actualizarRegistro(Usuarios user) {
+        try {
+            sf = new Configuration().configure().buildSessionFactory();
+            sesion = sf.openSession();
+            sesion.beginTransaction();
+            sesion.save(user);
+            sesion.getTransaction().commit();
+            sesion.close();
+            sf.close();
+        } catch (HibernateException e) {
+            System.out.println("Error" + e.getMessage());
+        }
     }
+//    public static void main(String[] args) {
+//        IUsuariosModel model = new UsuariosModelImpl();
+//        Usuarios user = new Usuarios();
+//        user.setNombre("dos");
+//        model.insertarRegistro(user);
+//        List<Usuarios> listauser = model.obtenerRegistros();
+//
+//        System.out.println(listauser.size());
+//    }
 }

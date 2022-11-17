@@ -7,5 +7,7 @@ public interface IUsuariosModel {
 
     public void insertarRegistro(Usuarios user);
 
+    public void actualizarRegistro(Usuarios user);
+
     public List<Usuarios> obtenerRegistros();
 }
