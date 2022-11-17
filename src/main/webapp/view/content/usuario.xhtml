@@ -19,7 +19,7 @@
                         <p:dataTable id="idTable" var="registro" value="#{user.listaRegistros}" editable="true"
                                      style="margin-bottom:20px">
 
-                            <p:ajax event="rowEdit" listener="#{user.onRowEdit}" update=":form:msgs"/>
+                            <p:ajax event="rowEdit" listener="#{user.onRowEdit(event, registro)}" update=":form:msgs"/>
                             <!--<p:ajax event="rowEditCancel" listener="#" update=":form:msgs"/>-->
 
                             <p:column headerText="Id Usuario">
@@ -48,7 +48,7 @@
                                         <h:outputText value="#{registro.nombre}"/>
                                     </f:facet>
                                     <f:facet name="input">
-                                        <p:inputText value="#{registro.nombre}" style="width:100%" label="Name"/>
+                                        <p:inputText id="nombre" value="#{registro.nombre}" style="width:100%" label="Name"/>
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>

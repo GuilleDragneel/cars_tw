@@ -19,5 +19,10 @@ public class UsuariosServiceImpl implements  IUsuariosService{
         return model.obtenerRegistros();
     }
 
+    @Override
+    public void actualizarRegistro(Usuarios user) {
+        model.actualizarRegistro(user);
+    }
+
    
 }

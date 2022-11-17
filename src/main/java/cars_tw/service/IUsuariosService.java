@@ -8,6 +8,8 @@ import java.util.List;
 public interface IUsuariosService {
 
     public void insertarRegistro(Usuarios user);
+    
+    public void actualizarRegistro(Usuarios user);
 
     public List<Usuarios> obtenerRegistros();
 }

@@ -48,7 +48,7 @@ public class UsuariosModelImpl implements IUsuariosModel {
             sf = new Configuration().configure().buildSessionFactory();
             sesion = sf.openSession();
             sesion.beginTransaction();
-            sesion.save(user);
+            sesion.update(user);
             sesion.getTransaction().commit();
             sesion.close();
             sf.close();
