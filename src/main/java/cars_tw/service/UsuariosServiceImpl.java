@@ -24,5 +24,10 @@ public class UsuariosServiceImpl implements  IUsuariosService{
         model.actualizarRegistro(user);
     }
 
+    @Override
+    public void eliminarRegistro(Usuarios user) {
+        model.eliminarRegistro(user);
+    }
+
    
 }
