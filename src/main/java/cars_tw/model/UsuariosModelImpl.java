@@ -56,6 +56,21 @@ public class UsuariosModelImpl implements IUsuariosModel {
             System.out.println("Error" + e.getMessage());
         }
     }
+    
+    @Override
+    public void eliminarRegistro(Usuarios user) {
+        try {
+            sf = new Configuration().configure().buildSessionFactory();
+            sesion = sf.openSession();
+            sesion.beginTransaction();
+            sesion.delete(user);
+            sesion.getTransaction().commit();
+            sesion.close();
+            sf.close();
+        } catch (HibernateException e) {
+            System.out.println("Error" + e.getMessage());
+        }
+    }
 //    public static void main(String[] args) {
 //        IUsuariosModel model = new UsuariosModelImpl();
 //        Usuarios user = new Usuarios();

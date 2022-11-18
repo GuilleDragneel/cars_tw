@@ -8,6 +8,8 @@ public interface IUsuariosModel {
     public void insertarRegistro(Usuarios user);
 
     public void actualizarRegistro(Usuarios user);
+    
+    public void eliminarRegistro(Usuarios user);
 
     public List<Usuarios> obtenerRegistros();
 }
