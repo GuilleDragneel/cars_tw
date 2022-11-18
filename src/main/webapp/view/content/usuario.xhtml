@@ -65,14 +65,21 @@
                             </p:column>
 
 
-                            <p:column style="width:6rem">
+                             <p:column style="width:6rem"  headerText="Editar">
                                 <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                            </p:column>
+                            
+                            <p:column style="width:6rem"  headerText="Eliminar">
+                                 <p:commandButton action="#{user.eliminarRegistro()}"
+                                         value="Eliminar"
+                                         update=""
+                                         ></p:commandButton>
                             </p:column>
                         </p:dataTable>
                     </div>
 
                     <h:panelGrid id="idPanel" columns="2">
-                        <h:outputLabel value="Ingrese el usuarioee"></h:outputLabel>
+                        <h:outputLabel value="Ingrese el usuario"></h:outputLabel>
                         <p:inputText id="idRol" value="#{user.usuarios.nombre}"></p:inputText>
 
                         <p:commandButton action="#{user.crearRegistro()}"
