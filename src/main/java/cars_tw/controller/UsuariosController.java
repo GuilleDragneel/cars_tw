@@ -54,7 +54,7 @@ public class UsuariosController implements Serializable {
     
      public void eliminarRegistro(Usuarios usuarios){
         service.eliminarRegistro(usuarios);
-        System.out.println("Eliminado...");
+        System.out.println("Eliminando...");
     }
    
 }
