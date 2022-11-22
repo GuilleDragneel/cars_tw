@@ -72,17 +72,19 @@
                             <p:column style="width:6rem"  headerText="Eliminar">
                                  <p:commandButton action="#{user.eliminarRegistro(registro)}"
                                          value="Eliminar"
-                                         update=""
-                                         ></p:commandButton>
+                                         update=""></p:commandButton>
                             </p:column>
                         </p:dataTable>
                     </div>
 
                     <h:panelGrid id="idPanel" columns="2">
                         <h:outputLabel value="Ingrese el usuario"></h:outputLabel>
-                        <p:inputText id="idRol" value="#{user.usuarios.nombre}"></p:inputText>
-
-                        <p:commandButton action="#{user.crearRegistro()}"
+                        <p:inputText id="idNombre" value="#{user.usuarios.nombre}"></p:inputText>
+                        <h:outputLabel value="Ingrese contraseña"></h:outputLabel>
+                        <p:inputText id="idContraseña" value="#{user.usuarios.contraseña}"></p:inputText>
+                        <h:outputLabel value="Ingrese el rol"></h:outputLabel>
+                        <p:inputText id="idRol" value="#{user.usuarios.rol}"></p:inputText>
+                                             <p:commandButton action="#{user.crearRegistro()}"
                                          value="Guardar registro"
                                          update=""
                                          ></p:commandButton>

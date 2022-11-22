@@ -12,14 +12,25 @@
             <ui:define name="content">
                 <h1>Conoce los autos que tenemos para ti</h1>
 
-                <p:card style="width: 25rem; margin-bottom: 2em">
+               
+                <p:card style="width: 25em">
+                    <f:facet name="header">
+                        <img  src="../../resources/images/índice.jpeg"/>
+                    </f:facet>
                     <f:facet name="title">
-                        Nissan March
+                        Advanced Card
+                    </f:facet>
+                    <f:facet name="subtitle">
+                        Card subtitle
                     </f:facet>
 
-                    <p>Número de pasajeros:5 <br></br>
-                        Número de puertas:5  <br></br> Transmisión: Manual  <br></br>   Aire acondicionado: Sí</p> 
-                    
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+                        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+
+                    <f:facet name="footer">
+                        <p:commandButton icon="pi pi-check" value="Save"/>
+                        <p:commandButton icon="pi pi-times" value="Cancel" styleClass="ui-button-secondary" style="margin-left: .5em"/>
+                    </f:facet>
                 </p:card>
             </ui:define>
 
