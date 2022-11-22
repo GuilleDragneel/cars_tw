@@ -52,7 +52,7 @@ public class UsuariosController implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
     
-     public void eliminarRegistro(Usuarios usuarios){
+     public void eliminarRegistro(){
         service.eliminarRegistro(usuarios);
         System.out.println("Eliminando...");
     }
