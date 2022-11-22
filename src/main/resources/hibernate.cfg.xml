@@ -45,12 +45,11 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/cars_tw</property>
     <property name="hibernate.connection.username">postgres</property>
-    <property name="hibernate.connection.password">jazzi24</property>
+    <property name="hibernate.connection.password">guille</property>
     <property name="hibernate.connection.pool_size">1</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping class="cars_tw.entity.Usuarios"/>
-    <mapping class="cars_tw.entity.Rol"/>
   </session-factory>
 </hibernate-configuration>

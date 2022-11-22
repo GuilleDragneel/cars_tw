@@ -43,18 +43,21 @@ public class UsuariosController implements Serializable {
     public List<Usuarios> getListaRegistros() {
         return listaRegistros;
     }
-    
-    public void onRowEdit(RowEditEvent event, Usuarios usuarios){
+
+    public void onRowEdit(RowEditEvent event) {
+
+        usuarios = (Usuarios) event.getObject();
         //System.out.println(usuarios.getIdUser());
         //System.out.println(usuarios.getNombre());
+
         service.actualizarRegistro(usuarios);
         FacesMessage mensaje = new FacesMessage("Registro editado exitosamente");
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
-    
-     public void eliminarRegistro() {
+
+    public void eliminarRegistro(Usuarios usuarios) {
         service.eliminarRegistro(usuarios);
-        System.out.println("Eliminado...");
+        System.out.println("Eliminando...");
     }
-   
+
 }

@@ -19,7 +19,7 @@
                         <p:dataTable id="idTable" var="registro" value="#{user.listaRegistros}" editable="true"
                                      style="margin-bottom:20px">
 
-                            <p:ajax event="rowEdit" listener="#{user.onRowEdit(event, registro)}" update=":form:msgs"/>
+                            <p:ajax event="rowEdit" listener="#{user.onRowEdit}" update=":form:msgs"/>
                             <!--<p:ajax event="rowEditCancel" listener="#" update=":form:msgs"/>-->
 
                             <p:column headerText="Id Usuario">
@@ -70,7 +70,7 @@
                             </p:column>
                             
                             <p:column style="width:6rem"  headerText="Eliminar">
-                                 <p:commandButton action="#{user.eliminarRegistro()}"
+                                 <p:commandButton action="#{user.eliminarRegistro(registro)}"
                                          value="Eliminar"
                                          update=""
                                          ></p:commandButton>
