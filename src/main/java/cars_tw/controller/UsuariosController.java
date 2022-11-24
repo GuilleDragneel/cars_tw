@@ -29,7 +29,7 @@ public class UsuariosController implements Serializable {
 
     public void crearRegistro() {
         service.insertarRegistro(usuarios);
-        System.out.println("guardardado");
+        listaRegistros = service.obtenerRegistros();
     }
 
     public Usuarios getUsuarios() {
@@ -57,6 +57,7 @@ public class UsuariosController implements Serializable {
 
     public void eliminarRegistro(Usuarios usuarios) {
         service.eliminarRegistro(usuarios);
+        listaRegistros = service.obtenerRegistros();
         System.out.println("Eliminando...");
     }
 
