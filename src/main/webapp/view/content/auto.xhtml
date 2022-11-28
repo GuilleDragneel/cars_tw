@@ -11,6 +11,8 @@
         <ui:composition template="./../templates/index.xhtml">
 
             <ui:define name="content">
+                <h:form id="form">
+                     <p:growl id="msgs" showDetail="true"/>
                 <h1>Conoce los autos que tenemos para ti</h1>
 
 
@@ -98,6 +100,8 @@
                         </p:dataTable>
                     </div>
 
+                
+                
                     <h:panelGrid id="idPanel" columns="2">
                         <h:outputLabel value="Descripción"></h:outputLabel>
                         <p:inputText id="idDescripcion" value="#{car.autos.descripcion}"></p:inputText>
@@ -116,17 +120,9 @@
                                          ></p:commandButton>
 
                     </h:panelGrid>
+                
                 </h:form>
-=======
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-                        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
 
-                    <f:facet name="footer">
-                        <p:commandButton icon="pi pi-check" value="Save"/>
-                        <p:commandButton icon="pi pi-times" value="Cancel" styleClass="ui-button-secondary" style="margin-left: .5em"/>
-                    </f:facet>
-                </p:card>
->>>>>>> origin/medina
             </ui:define>
 
         </ui:composition>
