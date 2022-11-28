@@ -13,82 +13,108 @@
             <ui:define name="content">
                 <h1>Conoce los autos que tenemos para ti</h1>
 
-               <h:form id="form">
+                <h:form id="form">
                     <p:growl id="msgs" showDetail="true"/>
 
                     <div class="card">
-               
-                        <p:dataTable id="idTable" var="registro" value="#{user.listaRegistros}" editable="true"
+
+                        <p:dataTable id="idTable" var="registro" value="#{car.listaRegistros}" editable="true"
                                      style="margin-bottom:20px">
 
                             <p:ajax event="rowEdit" listener="#{user.onRowEdit(event, registro)}" update=":form:msgs"/>
                             <!--<p:ajax event="rowEditCancel" listener="#" update=":form:msgs"/>-->
 
-                            <p:column headerText="Id Usuario">
+                            <p:column headerText="Id Auto">
                                 <p:cellEditor>
                                     <f:facet name="output">
-                                        <h:outputText value="#{registro.idUser}"/>
+                                        <h:outputText value="#{registro.id}"/>
                                     </f:facet>
                                     <f:facet name="input">
-                                        <p:inputText id="modelInput" value="#{registro.idUser}" style="width:100%"/>
+                                        <p:inputText id="modelInput" value="#{registro.id}" style="width:100%"/>
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
-                            <p:column headerText="Contraseña">
+                            <p:column headerText="Descripción">
                                 <p:cellEditor>
                                     <f:facet name="output">
-                                        <h:outputText value="#{registro.contraseña}"/>
+                                        <h:outputText value="#{registro.descripcion}"/>
                                     </f:facet>
                                     <f:facet name="input">
-                                        <p:inputText value="#{registro.contraseña}" style="width:100%" label="Name"/>
+                                        <p:inputText value="#{registro.descripcion}" style="width:100%" label="Name"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column><!-- comment -->
+                            <p:column headerText="Marca">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{registro.marca}"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{registro.marca}" style="width:100%" label="Name"/>
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
-                            <p:column headerText="Nombre">
+                            <p:column headerText="Modelo">
                                 <p:cellEditor>
                                     <f:facet name="output">
-                                        <h:outputText value="#{registro.nombre}"/>
+                                        <h:outputText value="#{registro.modelo}"/>
                                     </f:facet>
                                     <f:facet name="input">
-                                        <p:inputText id="nombre" value="#{registro.nombre}" style="width:100%" label="Name"/>
+                                        <p:inputText id="nombre" value="#{registro.modelo}" style="width:100%" label="Name"/>
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
 
-                            <p:column headerText="Rol">
+                            <p:column headerText="Placas">
                                 <p:cellEditor>
                                     <f:facet name="output">
-                                        <h:outputText value="#{registro.rol}"/>
+                                        <h:outputText value="#{registro.placas}"/>
                                     </f:facet>
                                     <f:facet name="input">
-                                        <p:inputText value="#{registro.rol}" style="width:100%" label="Name"/>
+                                        <p:inputText value="#{registro.placas}" style="width:100%" label="Name"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Precio">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{registro.precio}"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{registro.precio}" style="width:100%" label="Name"/>
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
 
 
-                             <p:column style="width:6rem"  headerText="Editar">
+                            <p:column style="width:6rem"  headerText="Editar">
                                 <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
                             </p:column>
-                            
+
                             <p:column style="width:6rem"  headerText="Eliminar">
-                                 <p:commandButton action="#{user.eliminarRegistro(registro)}"
-                                         value="Eliminar"
-                                         update=""></p:commandButton>
+                                <p:commandButton action="#{car.eliminarRegistro(registro)}"
+                                                 value="Eliminar"
+                                                 update=":form:idTable"></p:commandButton>
                             </p:column>
                         </p:dataTable>
                     </div>
 
                     <h:panelGrid id="idPanel" columns="2">
-                        <h:outputLabel value="Ingrese el usuario"></h:outputLabel>
-                        <p:inputText id="idNombre" value="#{user.usuarios.nombre}"></p:inputText>
-                        <h:outputLabel value="Ingrese contraseña"></h:outputLabel>
-                        <p:inputText id="idContraseña" value="#{user.usuarios.contraseña}"></p:inputText>
-                        <h:outputLabel value="Ingrese el rol"></h:outputLabel>
-                        <p:inputText id="idRol" value="#{user.usuarios.rol}"></p:inputText>
-                                             <p:commandButton action="#{user.crearRegistro()}"
+                        <h:outputLabel value="Descripción"></h:outputLabel>
+                        <p:inputText id="idDescripcion" value="#{car.autos.descripcion}"></p:inputText>
+                        <h:outputLabel value="Marca"></h:outputLabel>
+                        <p:inputText id="idMarca" value="#{car.autos.marca}"></p:inputText>
+                        <h:outputLabel value="Modelo"></h:outputLabel>
+                        <p:inputText id="idModelo" value="#{car.autos.modelo}"></p:inputText>
+                        <h:outputLabel value="Placas"></h:outputLabel>
+                        <p:inputText id="idPlacas" value="#{car.autos.placas}"></p:inputText>
+                        <h:outputLabel value="Precio"></h:outputLabel>
+                        <p:inputText id="idPrecio" value="#{car.autos.precio}"></p:inputText>
+
+                        <p:commandButton action="#{car.crearRegistro()}"
                                          value="Guardar registro"
-                                         update=""
+                                         update=":form:idTable"
                                          ></p:commandButton>
 
                     </h:panelGrid>
