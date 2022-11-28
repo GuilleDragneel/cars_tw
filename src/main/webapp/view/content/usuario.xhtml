@@ -15,7 +15,20 @@
                     <p:growl id="msgs" showDetail="true"/>
 
                     <div class="card">
-                        <h5>Row Editing</h5>
+                        <h1>Sección usuarios</h1>
+                        
+                        <p:toolbar>
+            <p:toolbarGroup>
+                
+                <p:commandButton value="New" icon="pi pi-plus" actionListener="#{user.crearRegistro()}"
+                    update="" oncomplete=""
+                    styleClass="ui-button-success" style="margin-right: .5rem">
+                   
+                </p:commandButton>
+               
+            </p:toolbarGroup>
+                        </p:toolbar>            
+                            
                         <p:dataTable id="idTable" var="registro" value="#{user.listaRegistros}" editable="true"
                                      style="margin-bottom:20px">
 
@@ -69,10 +82,10 @@
                                 <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
                             </p:column>
                             
-                            <p:column style="width:6rem"  headerText="Eliminar">
+                            <p:column style="width:6rem"  headerText="">
                                  <p:commandButton action="#{user.eliminarRegistro(registro)}"
                                          value="Eliminar"
-                                         update=""></p:commandButton>
+                                         update=":form:idTable" icon="pi pi-trash"   styleClass="ui-button-danger" ></p:commandButton>
                             </p:column>
                         </p:dataTable>
                     </div>
