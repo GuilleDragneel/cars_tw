@@ -17,11 +17,16 @@ import javax.validation.constraints.Size;
 @Table(name = "usuarios")
 @javax.xml.bind.annotation.XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u"),
-    @NamedQuery(name = "Usuarios.findByIdUser", query = "SELECT u FROM Usuarios u WHERE u.idUser = :idUser"),
-    @NamedQuery(name = "Usuarios.findByContrase\u00f1a", query = "SELECT u FROM Usuarios u WHERE u.contrase\u00f1a = :contrase\u00f1a"),
-    @NamedQuery(name = "Usuarios.findByNombre", query = "SELECT u FROM Usuarios u WHERE u.nombre = :nombre"),
-    @NamedQuery(name = "Usuarios.findByRol", query = "SELECT u FROM Usuarios u WHERE u.rol = :rol")})
+    @NamedQuery(name = "Usuarios.findAll", 
+            query = "SELECT u FROM Usuarios u"),
+    @NamedQuery(name = "Usuarios.findByIdUser", 
+            query = "SELECT u FROM Usuarios u WHERE u.idUser = :idUser"),
+    @NamedQuery(name = "Usuarios.findByContrase\u00f1a", 
+ query = "SELECT u FROM Usuarios u WHERE u.contrase\u00f1a = :contrase\u00f1a"),
+    @NamedQuery(name = "Usuarios.findByNombre", 
+            query = "SELECT u FROM Usuarios u WHERE u.nombre = :nombre"),
+    @NamedQuery(name = "Usuarios.findByRol", 
+            query = "SELECT u FROM Usuarios u WHERE u.rol = :rol")})
 public class Usuarios implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -88,12 +93,12 @@ public class Usuarios implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Usuarios)) {
             return false;
         }
         Usuarios other = (Usuarios) object;
-        if ((this.idUser == null && other.idUser != null) || (this.idUser != null && !this.idUser.equals(other.idUser))) {
+        if ((this.idUser == null && other.idUser != null) ||
+               (this.idUser != null && !this.idUser.equals(other.idUser))) {
             return false;
         }
         return true;
