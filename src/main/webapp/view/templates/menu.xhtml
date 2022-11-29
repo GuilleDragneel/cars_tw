@@ -2,16 +2,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <h:outputLink value="#{request.contextPath}/faces/view/content/usuario.xhtml"
-                      class="nav-link">Usuarios</h:outputLink>
-        <br></br>              
-        <h:outputLink value="#{request.contextPath}/faces/view/content/auto.xhtml"
-                      class="nav-link">Catálogo de vehículos</h:outputLink>
-        <br></br>  
-        <h:outputLink value="#{request.contextPath}/faces/view/content/contactanos.xhtml"
-                      class="nav-link">Contáctanos</h:outputLink>                      
+        <h:form>
+            <p:tabMenu>
+                <p:menuitem value="Usuarios" 
+                            outcome="/faces/view/content/usuario.xhtml" 
+                            icon="pi pi-fw pi-users">
+
+                </p:menuitem>
+                <p:menuitem value="Catálogo de autos" 
+                            outcome="/faces/view/content/auto.xhtml"
+                            icon="pi pi-fw pi-car">
+
+                </p:menuitem>
+                <p:menuitem value="Contáctanos" 
+                            outcome="/faces/view/content/contactanos.xhtml"
+                            icon="pi pi-fw pi-phone">
+
+                </p:menuitem>
+            </p:tabMenu>
+        </h:form>
     </ui:composition>
+
 </html>
