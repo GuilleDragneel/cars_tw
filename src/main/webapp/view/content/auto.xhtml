@@ -14,120 +14,109 @@
                 <h1>Conoce los autos que tenemos para ti</h1>
 
 
-                    <div class="card">
+                    <p:dataTable id="idTable" var="registro" value="#{car.listaRegistros}" editable="true"
+                                 style="margin-bottom:20px">
 
-                        <p:dataTable id="idTable" var="registro" value="#{car.listaRegistros}" editable="true"
-                                     style="margin-bottom:20px">
+                        <p:ajax event="rowEdit" listener="#{user.onRowEdit(event, registro)}" update=":form:msgs"/>
+                        <!--<p:ajax event="rowEditCancel" listener="#" update=":form:msgs"/>-->
 
-                            <p:ajax event="rowEdit" listener="#{user.onRowEdit(event, registro)}" update=":form:msgs"/>
-                            <!--<p:ajax event="rowEditCancel" listener="#" update=":form:msgs"/>-->
+                        <p:column headerText="Id Auto">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{registro.id}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="modelInput" value="#{registro.id}" style="width:100%"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Descripción">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{registro.descripcion}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{registro.descripcion}" style="width:100%" label="Name"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column><!-- comment -->
+                        <p:column headerText="Marca">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{registro.marca}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{registro.marca}" style="width:100%" label="Name"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Modelo">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{registro.modelo}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="nombre" value="#{registro.modelo}" style="width:100%" label="Name"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
 
-                            <p:column headerText="Id Auto">
-                                <p:cellEditor>
-                                    <f:facet name="output">
-                                        <h:outputText value="#{registro.id}"/>
-                                    </f:facet>
-                                    <f:facet name="input">
-                                        <p:inputText id="modelInput" value="#{registro.id}" style="width:100%"/>
-                                    </f:facet>
-                                </p:cellEditor>
-                            </p:column>
-                            <p:column headerText="Descripción">
-                                <p:cellEditor>
-                                    <f:facet name="output">
-                                        <h:outputText value="#{registro.descripcion}"/>
-                                    </f:facet>
-                                    <f:facet name="input">
-                                        <p:inputText value="#{registro.descripcion}" style="width:100%" label="Name"/>
-                                    </f:facet>
-                                </p:cellEditor>
-                            </p:column><!-- comment -->
-                            <p:column headerText="Marca">
-                                <p:cellEditor>
-                                    <f:facet name="output">
-                                        <h:outputText value="#{registro.marca}"/>
-                                    </f:facet>
-                                    <f:facet name="input">
-                                        <p:inputText value="#{registro.marca}" style="width:100%" label="Name"/>
-                                    </f:facet>
-                                </p:cellEditor>
-                            </p:column>
-                            <p:column headerText="Modelo">
-                                <p:cellEditor>
-                                    <f:facet name="output">
-                                        <h:outputText value="#{registro.modelo}"/>
-                                    </f:facet>
-                                    <f:facet name="input">
-                                        <p:inputText id="nombre" value="#{registro.modelo}" style="width:100%" label="Name"/>
-                                    </f:facet>
-                                </p:cellEditor>
-                            </p:column>
+                        <p:column headerText="Placas">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{registro.placas}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{registro.placas}" style="width:100%" label="Name"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
 
-                            <p:column headerText="Placas">
-                                <p:cellEditor>
-                                    <f:facet name="output">
-                                        <h:outputText value="#{registro.placas}"/>
-                                    </f:facet>
-                                    <f:facet name="input">
-                                        <p:inputText value="#{registro.placas}" style="width:100%" label="Name"/>
-                                    </f:facet>
-                                </p:cellEditor>
-                            </p:column>
-
-                            <p:column headerText="Precio">
-                                <p:cellEditor>
-                                    <f:facet name="output">
-                                        <h:outputText value="#{registro.precio}"/>
-                                    </f:facet>
-                                    <f:facet name="input">
-                                        <p:inputText value="#{registro.precio}" style="width:100%" label="Name"/>
-                                    </f:facet>
-                                </p:cellEditor>
-                            </p:column>
+                        <p:column headerText="Precio">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{registro.precio}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{registro.precio}" style="width:100%" label="Name"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
 
 
-                            <p:column style="width:6rem"  headerText="Editar">
-                                <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
-                            </p:column>
+                        <p:column style="width:6rem"  headerText="Editar">
+                            <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                        </p:column>
 
-                            <p:column style="width:6rem"  headerText="Eliminar">
-                                <p:commandButton action="#{car.eliminarRegistro(registro)}"
-                                                 value="Eliminar"
-                                                 update=":form:idTable"></p:commandButton>
-                            </p:column>
-                        </p:dataTable>
-                    </div>
+                        <p:column style="width:6rem"  headerText="Eliminar">
+                            <p:commandButton action="#{car.eliminarRegistro(registro)}"
+                                             value="Eliminar"
+                                             update=":form:idTable"></p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </div>
 
-                    <h:panelGrid id="idPanel" columns="2">
-                        <h:outputLabel value="Descripción"></h:outputLabel>
-                        <p:inputText id="idDescripcion" value="#{car.autos.descripcion}"></p:inputText>
-                        <h:outputLabel value="Marca"></h:outputLabel>
-                        <p:inputText id="idMarca" value="#{car.autos.marca}"></p:inputText>
-                        <h:outputLabel value="Modelo"></h:outputLabel>
-                        <p:inputText id="idModelo" value="#{car.autos.modelo}"></p:inputText>
-                        <h:outputLabel value="Placas"></h:outputLabel>
-                        <p:inputText id="idPlacas" value="#{car.autos.placas}"></p:inputText>
-                        <h:outputLabel value="Precio"></h:outputLabel>
-                        <p:inputText id="idPrecio" value="#{car.autos.precio}"></p:inputText>
+                <h:panelGrid id="idPanel" columns="2">
+                    <h:outputLabel value="Descripción"></h:outputLabel>
+                    <p:inputText id="idDescripcion" value="#{car.autos.descripcion}"></p:inputText>
+                    <h:outputLabel value="Marca"></h:outputLabel>
+                    <p:inputText id="idMarca" value="#{car.autos.marca}"></p:inputText>
+                    <h:outputLabel value="Modelo"></h:outputLabel>
+                    <p:inputText id="idModelo" value="#{car.autos.modelo}"></p:inputText>
+                    <h:outputLabel value="Placas"></h:outputLabel>
+                    <p:inputText id="idPlacas" value="#{car.autos.placas}"></p:inputText>
+                    <h:outputLabel value="Precio"></h:outputLabel>
+                    <p:inputText id="idPrecio" value="#{car.autos.precio}"></p:inputText>
 
-                        <p:commandButton action="#{car.crearRegistro()}"
-                                         value="Guardar registro"
-                                         update=":form:idTable"
-                                         ></p:commandButton>
+                    <p:commandButton action="#{car.crearRegistro()}"
+                                     value="Guardar registro"
+                                     update=":form:idTable"
+                                     ></p:commandButton>
 
-                    </h:panelGrid>
+                </h:panelGrid>
                 </h:form>
-=======
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-                        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
-
-                    <f:facet name="footer">
-                        <p:commandButton icon="pi pi-check" value="Save"/>
-                        <p:commandButton icon="pi pi-times" value="Cancel" styleClass="ui-button-secondary" style="margin-left: .5em"/>
-                    </f:facet>
-                </p:card>
->>>>>>> origin/medina
             </ui:define>
+
 
         </ui:composition>
 
