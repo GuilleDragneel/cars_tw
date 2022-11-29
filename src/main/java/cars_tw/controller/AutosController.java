@@ -59,4 +59,7 @@ public class AutosController {
         System.out.println("Eliminando exitosamente...");
     }
 
+     public void limpiar(){
+        this.autos= new Autos();
+    }
 }

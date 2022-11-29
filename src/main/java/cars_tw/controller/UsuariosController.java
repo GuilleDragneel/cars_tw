@@ -61,4 +61,7 @@ public class UsuariosController implements Serializable {
         System.out.println("Eliminando...");
     }
 
+    public void limpiar(){
+        this.usuarios= new Usuarios();
+    }
 }
