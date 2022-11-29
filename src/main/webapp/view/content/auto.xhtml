@@ -11,7 +11,7 @@
         <ui:composition template="./../templates/index.xhtml">
 
             <ui:define name="content">
-                <h:form id="form">
+                <h:form id="forma">
                     <p:growl id="msgs" showDetail="true"/>
 
                     <div class="card">
@@ -20,20 +20,20 @@
                         <p:toolbar>
                             <p:toolbarGroup>
                                 <p:commandButton value="New" icon="pi pi-plus"
-                                                 update="" oncomplete="PF('ventana').show()"
+                                                 update="" oncomplete="PF('ventana2').show()"
                                                  styleClass="ui-button-success" style="margin-right: .5rem">
                                 </p:commandButton>
                             </p:toolbarGroup>
                         </p:toolbar>            
                         <p:fieldset legend="Autos"  toggleable="true">
-                        <p:dataTable id="idTable" var="registro" value="#{car.listaRegistros}" editable="true"
+                        <p:dataTable id="idTabla" var="registro" value="#{car.listaRegistros}" editable="true"
                                      style="margin-bottom:20px">
 
-                            <p:ajax event="rowEdit" listener="#{car.onRowEdit}" update=":form:msgs"/>
+                            <p:ajax event="rowEdit" listener="#{car.onRowEdit}" update=":forma:msgs"/>
                             <p:column headerText="Id Auto">
                                 <p:cellEditor>
                                     <f:facet name="output">
-                                        <h:outputText value="#{registro.id}"/>
+                                        <h:outputText value="#{registro.id}"/>s
                                     </f:facet>
                                     <f:facet name="input">
                                         <p:inputText id="modelInput" value="#{registro.id}" style="width:100%"/>
@@ -101,7 +101,7 @@
                             <p:column style="width:6rem"  headerText="">
                                 <p:commandButton action="#{car.eliminarRegistro(registro)}"
                                                  value="Eliminar"
-                                                 update=":form:idTable" icon="pi pi-trash"   styleClass="ui-button-danger" ></p:commandButton>
+                                                 update=":forma:idTabla" icon="pi pi-trash"   styleClass="ui-button-danger" ></p:commandButton>
                             </p:column>
                         </p:dataTable>
                         </p:fieldset>
@@ -110,7 +110,7 @@
 
 
 
-                <p:dialog widgetVar="ventana" header="Nuevo auto" modal="true" resizable="false" showEffect="clip">
+                <p:dialog widgetVar="ventana2" header="Nuevo auto" modal="true" resizable="false" showEffect="clip">
                     <p:ajax event="close" listener="#{car.limpiar()}" update=":v" />
                     <h:form id="v">
 
@@ -128,8 +128,8 @@
                             
                             <p:commandButton action="#{car.crearRegistro()}"
                                              value="Guardar registro"
-                                             update=":form:idTable"
-                                             oncomplete="PF('ventana').hide()"
+                                             update=":forma:idTabla"
+                                             oncomplete="PF('ventana2').hide()"
                                              ></p:commandButton>
 
                         </h:panelGrid>
