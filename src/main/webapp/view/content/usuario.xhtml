@@ -15,13 +15,23 @@
                     <p:growl id="msgs" showDetail="true"/>
 
                     <div class="card">
-                        <h5>Row Editing</h5>
+                        <h1>Sección usuarios</h1>
+
+                        <p:toolbar>
+                            <p:toolbarGroup>
+
+                                <p:commandButton value="New" icon="pi pi-plus" actionListener="#{user.crearRegistro()}"
+                                                 update="" oncomplete="PF('ventana').show()"
+                                                 styleClass="ui-button-success" style="margin-right: .5rem">
+
+                                </p:commandButton>
+                            </p:toolbarGroup>
+                        </p:toolbar>            
+
                         <p:dataTable id="idTable" var="registro" value="#{user.listaRegistros}" editable="true"
                                      style="margin-bottom:20px">
 
                             <p:ajax event="rowEdit" listener="#{user.onRowEdit}" update=":form:msgs"/>
-                            <!--<p:ajax event="rowEditCancel" listener="#" update=":form:msgs"/>-->
-
                             <p:column headerText="Id Usuario">
                                 <p:cellEditor>
                                     <f:facet name="output">
@@ -65,33 +75,40 @@
                             </p:column>
 
 
-                             <p:column style="width:6rem"  headerText="Editar">
+                            <p:column style="width:6rem"  headerText="Editar">
                                 <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
                             </p:column>
-                            
-                            <p:column style="width:6rem"  headerText="Eliminar">
-                                 <p:commandButton action="#{user.eliminarRegistro(registro)}"
-                                         value="Eliminar"
-                                         update=""></p:commandButton>
+
+                            <p:column style="width:6rem"  headerText="">
+                                <p:commandButton action="#{user.eliminarRegistro(registro)}"
+                                                 value="Eliminar"
+                                                 update=":form:idTable" icon="pi pi-trash"   styleClass="ui-button-danger" ></p:commandButton>
                             </p:column>
                         </p:dataTable>
                     </div>
-
-                    <h:panelGrid id="idPanel" columns="2">
-                        <h:outputLabel value="Ingrese el usuario"></h:outputLabel>
-                        <p:inputText id="idNombre" value="#{user.usuarios.nombre}"></p:inputText>
-                        <h:outputLabel value="Ingrese contraseña"></h:outputLabel>
-                        <p:inputText id="idContraseña" value="#{user.usuarios.contraseña}"></p:inputText>
-                        <h:outputLabel value="Ingrese el rol"></h:outputLabel>
-                        <p:inputText id="idRol" value="#{user.usuarios.rol}"></p:inputText>
-                                             <p:commandButton action="#{user.crearRegistro()}"
-                                         value="Guardar registro"
-                                         update=":form:idTable"
-                                         ></p:commandButton>
-
-                    </h:panelGrid>
                 </h:form>
 
+
+
+                <p:dialog widgetVar="ventana" header="Nuevo" modal="true" resizable="false" showEffect="clip">
+                    <h:form id="v">
+
+                        <h:panelGrid id="idPanel" columns="2">
+                            <h:outputLabel value="Ingrese el usuario"></h:outputLabel>
+                            <p:inputText id="idNombre" value="#{user.usuarios.nombre}"></p:inputText>
+                            <h:outputLabel value="Ingrese contraseña"></h:outputLabel>
+                            <p:inputText id="idContraseña" value="#{user.usuarios.contraseña}"></p:inputText>
+                            <h:outputLabel value="Ingrese el rol"></h:outputLabel>
+                            <p:inputText id="idRol" value="#{user.usuarios.rol}"></p:inputText>
+                            <p:commandButton action="#{user.crearRegistro()}"
+                                             value="Guardar registro"
+                                             update=":form:idTable"
+                                             oncomplete="PF('ventana').hide()"
+                                             ></p:commandButton>
+
+                        </h:panelGrid>
+                    </h:form>
+                </p:dialog> 
 
 
             </ui:define>
