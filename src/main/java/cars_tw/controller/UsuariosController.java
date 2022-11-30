@@ -1,3 +1,9 @@
+/**
+ * Autor: Jazziel Pérez Hernández
+ * Creación: 22/11/2022
+ * Actualización: 30/11/2022
+ * Descripción: Clase UsuariosController
+ */
 package cars_tw.controller;
 
 import cars_tw.entity.Usuarios;
@@ -12,10 +18,15 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.RowEditEvent;
 
+/**
+ * Definición se nombra en bean como user para instanciarlos y poder llamar a 
+ * los métodos getters y setter al igual que controlar el ciclo de vida
+ */
 @RequestScoped
 @ManagedBean(name = "user")
 public class UsuariosController implements Serializable {
 
+    
     private IUsuariosService service;
     private Usuarios usuarios;
     private List<Usuarios> listaRegistros;
@@ -51,8 +62,10 @@ public class UsuariosController implements Serializable {
         //System.out.println(usuarios.getNombre());
 
         service.actualizarRegistro(usuarios);
-        FacesMessage mensaje = new FacesMessage("Registro editado exitosamente");
-        FacesContext.getCurrentInstance().addMessage(null, mensaje);
+        FacesMessage mensaje = 
+                new FacesMessage("Registro editado exitosamente");
+        FacesContext.getCurrentInstance().
+                addMessage(null, mensaje);
     }
 
     public void eliminarRegistro(Usuarios usuarios) {
