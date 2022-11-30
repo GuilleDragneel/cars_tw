@@ -32,6 +32,7 @@ public class AutosController {
 
     public void crearRegistro() {
         service.insertarRegistro(autos);
+        listaRegistros = service.obtenerRegistros();
         System.out.println("guardardado exitosamente");
     }
 
@@ -50,12 +51,14 @@ public class AutosController {
     public void onRowEdit(RowEditEvent event) {
         autos = (Autos) event.getObject();
         service.actualizarRegistro(autos);
+        listaRegistros = service.obtenerRegistros();
         FacesMessage mensaje = new FacesMessage("Registro editado exitosamente");
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
 
     public void eliminarRegistro(Autos autos) {
         service.eliminarRegistro(autos);
+        listaRegistros = service.obtenerRegistros();
         System.out.println("Eliminando exitosamente...");
     }
 

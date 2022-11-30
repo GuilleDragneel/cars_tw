@@ -11,29 +11,26 @@
         <ui:composition template="./../templates/index.xhtml">
 
             <ui:define name="content">
-                <h:form id="forma">
-                    <p:growl id="msgs" showDetail="true"/>
+                <h:form id="form2">
+                    <p:growl id="msgs2" showDetail="true"/>
 
-                    <div class="card">
-                        
-
-                        <p:toolbar>
-                            <p:toolbarGroup>
-                                <p:commandButton value="New" icon="pi pi-plus"
-                                                 update="" oncomplete="PF('ventana2').show()"
-                                                 styleClass="ui-button-success" style="margin-right: .5rem">
-                                </p:commandButton>
-                            </p:toolbarGroup>
-                        </p:toolbar>            
-                        <p:fieldset legend="Autos"  toggleable="true">
-                        <p:dataTable id="idTabla" var="registro" value="#{car.listaRegistros}" editable="true"
+                    <p:toolbar>
+                        <p:toolbarGroup>
+                            <p:commandButton value="New" icon="pi pi-plus"
+                                             update="" oncomplete="PF('ventana2').show()"
+                                             styleClass="ui-button-success" style="margin-right: .5rem">
+                            </p:commandButton>
+                        </p:toolbarGroup>
+                    </p:toolbar>            
+                    <p:fieldset legend="Autos"  toggleable="true">
+                        <p:dataTable id="idTable2" var="registro" value="#{car.listaRegistros}" editable="true"
                                      style="margin-bottom:20px">
 
-                            <p:ajax event="rowEdit" listener="#{car.onRowEdit}" update=":forma:msgs"/>
-                            <p:column headerText="Id Auto">
+                            <p:ajax event="rowEdit" listener="#{car.onRowEdit(event)}" update=":form2:msgs2"/>
+                            <p:column headerText="IdAuto">
                                 <p:cellEditor>
                                     <f:facet name="output">
-                                        <h:outputText value="#{registro.id}"/>s
+                                        <h:outputText value="#{registro.id}"/>
                                     </f:facet>
                                     <f:facet name="input">
                                         <p:inputText id="modelInput" value="#{registro.id}" style="width:100%"/>
@@ -50,28 +47,28 @@
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
-                            <p:column headerText="Modelo">
-                                <p:cellEditor>
-                                    <f:facet name="output">
-                                        <h:outputText value="#{registro.modelo}"/>
-                                    </f:facet>
-                                    <f:facet name="input">
-                                        <p:inputText id="nombre" value="#{registro.modelo}" style="width:100%" label="Name"/>
-                                    </f:facet>
-                                </p:cellEditor>
-                            </p:column>
-
                             <p:column headerText="Marca">
                                 <p:cellEditor>
                                     <f:facet name="output">
                                         <h:outputText value="#{registro.marca}"/>
                                     </f:facet>
                                     <f:facet name="input">
-                                        <p:inputText value="#{registro.marca}" style="width:100%" label="Name"/>
+                                        <p:inputText id="nombre" value="#{registro.marca}" style="width:100%" label="Name"/>
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
-                            
+
+                            <p:column headerText="Modelo">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{registro.modelo}"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{registro.modelo}" style="width:100%" label="Name"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+
                             <p:column headerText="Placas">
                                 <p:cellEditor>
                                     <f:facet name="output">
@@ -94,6 +91,7 @@
                                 </p:cellEditor>
                             </p:column>
 
+
                             <p:column style="width:6rem"  headerText="Editar">
                                 <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
                             </p:column>
@@ -101,34 +99,32 @@
                             <p:column style="width:6rem"  headerText="">
                                 <p:commandButton action="#{car.eliminarRegistro(registro)}"
                                                  value="Eliminar"
-                                                 update=":forma:idTabla" icon="pi pi-trash"   styleClass="ui-button-danger" ></p:commandButton>
+                                                 update=":form2:idTable2" icon="pi pi-trash"   styleClass="ui-button-danger" ></p:commandButton>
                             </p:column>
                         </p:dataTable>
-                        </p:fieldset>
-                    </div>
-                </h:form>
+                    </p:fieldset>
+                               </h:form>
 
 
 
-                <p:dialog widgetVar="ventana2" header="Nuevo auto" modal="true" resizable="false" showEffect="clip">
+                <p:dialog widgetVar="ventana2" header="Nuevo" modal="true" resizable="false" showEffect="clip">
                     <p:ajax event="close" listener="#{car.limpiar()}" update=":v" />
                     <h:form id="v">
 
                         <h:panelGrid id="idPanel" columns="2">
-                            <h:outputLabel value="Descripción"></h:outputLabel>
-                            <p:inputText id="idNombre" value="#{car.autos.descripcion}"></p:inputText>
+                            <h:outputLabel value="Descripcion"></h:outputLabel>
+                            <p:inputText id="idDescripcion" value="#{car.autos.descripcion}"></p:inputText>
                             <h:outputLabel value="Marca"></h:outputLabel>
-                            <p:inputText id="idContraseña" value="#{car.autos.marca}"></p:inputText>
+                            <p:inputText id="idMarca" value="#{car.autos.marca}"></p:inputText>
                             <h:outputLabel value="Modelo"></h:outputLabel>
                             <p:inputText id="idModelo" value="#{car.autos.modelo}"></p:inputText>
                             <h:outputLabel value="Placas"></h:outputLabel>
                             <p:inputText id="idPlacas" value="#{car.autos.placas}"></p:inputText>
                             <h:outputLabel value="Precio"></h:outputLabel>
                             <p:inputText id="idPrecio" value="#{car.autos.precio}"></p:inputText>
-                            
                             <p:commandButton action="#{car.crearRegistro()}"
                                              value="Guardar registro"
-                                             update=":forma:idTabla"
+                                             update=":form2:idTable2"
                                              oncomplete="PF('ventana2').hide()"
                                              ></p:commandButton>
 

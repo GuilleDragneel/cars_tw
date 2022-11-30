@@ -14,77 +14,74 @@
                 <h:form id="form">
                     <p:growl id="msgs" showDetail="true"/>
 
-                    <div class="card">
+                    <p:toolbar>
+                        <p:toolbarGroup>
+                            <p:commandButton value="New" icon="pi pi-plus"
+                                             update="" oncomplete="PF('ventana').show()"
+                                             styleClass="ui-button-success" style="margin-right: .5rem">
+                            </p:commandButton>
+                        </p:toolbarGroup>
+                    </p:toolbar>            
+                    <p:fieldset legend="Usuarios"  toggleable="true">
+                        <p:dataTable id="idTable" var="registro" value="#{user.listaRegistros}" editable="true"
+                                     style="margin-bottom:20px">
+
+                            <p:ajax event="rowEdit" listener="#{user.onRowEdit}" update=":form:msgs"/>
+                            <p:column headerText="Id Usuario">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{registro.idUser}"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText id="modelInput" value="#{registro.idUser}" style="width:100%"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="Contraseña">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{registro.contraseña}"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{registro.contraseña}" style="width:100%" label="Name"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{registro.nombre}"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText id="nombre" value="#{registro.nombre}" style="width:100%" label="Name"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Rol">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{registro.rol}"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{registro.rol}" style="width:100%" label="Name"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
 
 
-                        <p:toolbar>
-                            <p:toolbarGroup>
-                                <p:commandButton value="New" icon="pi pi-plus"
-                                                 update="" oncomplete="PF('ventana').show()"
-                                                 styleClass="ui-button-success" style="margin-right: .5rem">
-                                </p:commandButton>
-                            </p:toolbarGroup>
-                        </p:toolbar>            
-                        <p:fieldset legend="Usuarios"  toggleable="true">
-                            <p:dataTable id="idTable" var="registro" value="#{user.listaRegistros}" editable="true"
-                                         style="margin-bottom:20px">
+                            <p:column style="width:6rem"  headerText="Editar">
+                                <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                            </p:column>
 
-                                <p:ajax event="rowEdit" listener="#{user.onRowEdit}" update=":form:msgs"/>
-                                <p:column headerText="Id Usuario">
-                                    <p:cellEditor>
-                                        <f:facet name="output">
-                                            <h:outputText value="#{registro.idUser}"/>
-                                        </f:facet>
-                                        <f:facet name="input">
-                                            <p:inputText id="modelInput" value="#{registro.idUser}" style="width:100%"/>
-                                        </f:facet>
-                                    </p:cellEditor>
-                                </p:column>
-                                <p:column headerText="Contraseña">
-                                    <p:cellEditor>
-                                        <f:facet name="output">
-                                            <h:outputText value="#{registro.contraseña}"/>
-                                        </f:facet>
-                                        <f:facet name="input">
-                                            <p:inputText value="#{registro.contraseña}" style="width:100%" label="Name"/>
-                                        </f:facet>
-                                    </p:cellEditor>
-                                </p:column>
-                                <p:column headerText="Nombre">
-                                    <p:cellEditor>
-                                        <f:facet name="output">
-                                            <h:outputText value="#{registro.nombre}"/>
-                                        </f:facet>
-                                        <f:facet name="input">
-                                            <p:inputText id="nombre" value="#{registro.nombre}" style="width:100%" label="Name"/>
-                                        </f:facet>
-                                    </p:cellEditor>
-                                </p:column>
-
-                                <p:column headerText="Rol">
-                                    <p:cellEditor>
-                                        <f:facet name="output">
-                                            <h:outputText value="#{registro.rol}"/>
-                                        </f:facet>
-                                        <f:facet name="input">
-                                            <p:inputText value="#{registro.rol}" style="width:100%" label="Name"/>
-                                        </f:facet>
-                                    </p:cellEditor>
-                                </p:column>
-
-
-                                <p:column style="width:6rem"  headerText="Editar">
-                                    <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
-                                </p:column>
-
-                                <p:column style="width:6rem"  headerText="">
-                                    <p:commandButton action="#{user.eliminarRegistro(registro)}"
-                                                     value="Eliminar"
-                                                     update=":form:idTable" icon="pi pi-trash"   styleClass="ui-button-danger" ></p:commandButton>
-                                </p:column>
-                            </p:dataTable>
-                        </p:fieldset>
-                    </div>
+                            <p:column style="width:6rem"  headerText="">
+                                <p:commandButton action="#{user.eliminarRegistro(registro)}"
+                                                 value="Eliminar"
+                                                 update=":form:idTable" icon="pi pi-trash"   styleClass="ui-button-danger" ></p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </p:fieldset>
+                  
                 </h:form>
 
 

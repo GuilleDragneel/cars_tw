@@ -51,6 +51,7 @@ public class UsuariosController implements Serializable {
         //System.out.println(usuarios.getNombre());
 
         service.actualizarRegistro(usuarios);
+        listaRegistros = service.obtenerRegistros();
         FacesMessage mensaje = new FacesMessage("Registro editado exitosamente");
         FacesContext.getCurrentInstance().addMessage(null, mensaje);
     }
