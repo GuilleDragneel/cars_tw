@@ -1,3 +1,9 @@
+/**
+ * Autor: Guillermo Daniel Cruz Ortega
+ * Creación: 22/10/2022
+ * Actualización: 29/10/2022
+ * Descripción: Interface de UsuariosModelImpl
+ */
 package cars_tw.model;
 
 import cars_tw.entity.Usuarios;
@@ -6,12 +12,20 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
+/**
+ * 
+ * Clase de UsuariosModelImpl implementando IUsuariosModel
+ */
 public class UsuariosModelImpl implements IUsuariosModel {
-
+    /**
+     * Se incializan variables de sesión
+     */
     private SessionFactory sf;
     private Session sesion;
-
+    /**
+     * 
+     * @param user : Método encargado de insertar registros
+     */
     @Override
     public void insertarRegistro(Usuarios user) {
         try {
@@ -26,7 +40,10 @@ public class UsuariosModelImpl implements IUsuariosModel {
             System.out.println("Error" + e.getMessage());
         }
     }
-
+    /**
+     * 
+     * @return  Método encargado de obtener registros por medio de una lista
+     */
     @Override
     public List<Usuarios> obtenerRegistros() {
         List<Usuarios> listaUsuarios = null;
@@ -41,7 +58,10 @@ public class UsuariosModelImpl implements IUsuariosModel {
         }
         return listaUsuarios;
     }
-
+    /**
+     * 
+     * @param user : Método encargado de actualizar un registro
+     */
     @Override
     public void actualizarRegistro(Usuarios user) {
         try {
@@ -56,7 +76,10 @@ public class UsuariosModelImpl implements IUsuariosModel {
             System.out.println("Error" + e.getMessage());
         }
     }
-    
+    /**
+     * 
+     * @param user : Método encargado de eliminar un registro
+     */
     @Override
     public void eliminarRegistro(Usuarios user) {
         try {
@@ -71,13 +94,4 @@ public class UsuariosModelImpl implements IUsuariosModel {
             System.out.println("Error" + e.getMessage());
         }
     }
-//    public static void main(String[] args) {
-//        IUsuariosModel model = new UsuariosModelImpl();
-//        Usuarios user = new Usuarios();
-//        user.setNombre("dos");
-//        model.insertarRegistro(user);
-//        List<Usuarios> listauser = model.obtenerRegistros();
-//
-//        System.out.println(listauser.size());
-//    }
 }

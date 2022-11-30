@@ -212,11 +212,11 @@ public class Autos implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-/**
- * 
- * @param object : Método que recibe un object y lo ocupa para conpaciones
- * @return Devuelve un valor boolean
- */
+    /**
+     * 
+     * @param object : Método que recibe un object y lo ocupa para conpaciones
+     * @return Devuelve un valor booleano
+     */
     @Override
     public boolean equals(Object object) {
         if (!(object instanceof Autos)) {
@@ -229,10 +229,10 @@ public class Autos implements Serializable {
         }
         return true;
     }
-/**
- * 
- * @return Método que devuelve un String
- */
+    /**
+     * 
+     * @return Método que devuelve un String
+     */
     @Override
     public String toString() {
         return "cars_tw.entity.Autos[ id=" + id + " ]";

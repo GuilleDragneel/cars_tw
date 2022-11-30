@@ -1,4 +1,9 @@
-
+/**
+ * Autor: Guillermo Daniel Cruz Ortega
+ * Creación: 22/10/2022
+ * Actualización: 29/10/2022
+ * Descripción: Clase AutosModelImpl
+ */
 package cars_tw.model;
 
 import cars_tw.entity.Autos;
@@ -7,12 +12,20 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
-
+/**
+ * 
+ * Clase de AutosModelImpl implementando IAutosModel
+ */
 public class AutosModelImpl implements IAutosModel  {
+    /**
+     * Se incializan variables de sesión
+     */
     private SessionFactory sf;
     private Session sesion;
-
+    /**
+     * 
+     * @param auto : Método encargado de insertar registros
+     */
     @Override
     public void insertarRegistro(Autos auto) {
         try {
@@ -27,7 +40,10 @@ public class AutosModelImpl implements IAutosModel  {
             System.out.println("Error" + e.getMessage());
         }
     }
-
+    /**
+     * 
+     * @return Método encargado de obtener registros por medio de una lista
+     */
     @Override
     public List<Autos> obtenerRegistros() {
         List<Autos> listaUsuarios = null;
@@ -42,7 +58,10 @@ public class AutosModelImpl implements IAutosModel  {
         }
         return listaUsuarios;
     }
-
+    /**
+     * 
+     * @param auto : Método encargado de actualizar un registro
+     */
     @Override
     public void actualizarRegistro(Autos auto) {
         try {
@@ -57,7 +76,10 @@ public class AutosModelImpl implements IAutosModel  {
             System.out.println("Error" + e.getMessage());
         }
     }
-    
+    /**
+     * 
+     * @param auto : Método encargado de eliminar un registro
+     */
     @Override
     public void eliminarRegistro(Autos auto) {
         try {
@@ -71,14 +93,5 @@ public class AutosModelImpl implements IAutosModel  {
         } catch (HibernateException e) {
             System.out.println("Error" + e.getMessage());
         }
-    }
-    public static void main(String[] args) {
-        IAutosModel model = new AutosModelImpl();
-        Autos auto = new Autos();
-        auto.setMarca("Nissan");
-        model.insertarRegistro(auto);
-        List<Autos> listauser = model.obtenerRegistros();
-
-        System.out.println(listauser.size());
     }
 }
