@@ -1,6 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ * Autor: Jazziel Pérez Hernández
+ * Creación: 22/11/2022
+ * Actualización: 30/11/2022
+ * Descripción: Clase AutosController
  */
 package cars_tw.controller;
 
@@ -14,11 +16,18 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.RowEditEvent;
-
+/**
+ * Definición se nombra en bean como car para instanciarlos y poder llamar a 
+ * los métodos getters y setter al igual que controlar el ciclo de vida
+ */
 @RequestScoped
 @ManagedBean(name = "car")
 public class AutosController {
 
+    /**
+     * Se declaran 2 objetos de IAutosService y Autos al igual que una lista de 
+     * objetos Auto  
+     */
     private IAutosService service;
     private Autos autos;
     private List<Autos> listaRegistros;
@@ -52,8 +61,11 @@ public class AutosController {
         autos = (Autos) event.getObject();
         service.actualizarRegistro(autos);
         listaRegistros = service.obtenerRegistros();
-        FacesMessage mensaje = new FacesMessage("Registro editado exitosamente");
-        FacesContext.getCurrentInstance().addMessage(null, mensaje);
+        FacesMessage mensaje = 
+                new FacesMessage("Registro editado exitosamente");
+        FacesContext.getCurrentInstance().
+                addMessage(null, mensaje);
+
     }
 
     public void eliminarRegistro(Autos autos) {
