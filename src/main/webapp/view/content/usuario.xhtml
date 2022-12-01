@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -7,53 +8,73 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-
+        <!-- Interfaz de la sección usuarios, que muestra los usuarios 
+        registrados en base de datos y que lleva a cabo el CRUD -->
         <ui:composition template="./../templates/index.xhtml">
 
             <ui:define name="content">
+                <!-- Se define form que contiene a la tabla con datos de auto 
+                que se mostrará al usuario -->
                 <h:form id="form">
                     <p:growl id="msgs" showDetail="true"/>
-
+                    <!-- se crea toolbar group que contiene el botón que dispara 
+                    la ventana para registrar un usuario -->
                     <p:toolbar>
                         <p:toolbarGroup>
-                            <p:commandButton value="New" icon="pi pi-plus"
-                                             update="" oncomplete="PF('ventana').show()"
-                                             styleClass="ui-button-success" style="margin-right: .5rem">
+                            <p:commandButton value="Nuevo" icon="pi pi-plus"
+                                             update="" 
+                                             oncomplete="PF('ventana').show()"
+                                             styleClass="ui-button-success" 
+                                             style="margin-right: .5rem">
                             </p:commandButton>
                         </p:toolbarGroup>
-                    </p:toolbar>            
+                    </p:toolbar>  
+                    <!-- Se define datatable con sus respectivas column para 
+                   mostrar los datos almacenados en la tabla usuarios de nuestra 
+                    base de datos, los datos se muestran llamando al objeto 
+                    registro con su respectivo atributo para cada columna-->
                     <p:fieldset legend="Usuarios"  toggleable="true">
-                        <p:dataTable id="idTable" var="registro" value="#{user.listaRegistros}" editable="true"
+                        <p:dataTable id="idTable" var="registro" 
+                                     value="#{user.listaRegistros}" 
+                                     editable="true"
                                      style="margin-bottom:20px">
 
-                            <p:ajax event="rowEdit" listener="#{user.onRowEdit}" update=":form:msgs"/>
+                            <p:ajax event="rowEdit" listener="#{user.onRowEdit}" 
+                                    update=":form:msgs"/>
                             <p:column headerText="Id Usuario">
                                 <p:cellEditor>
                                     <f:facet name="output">
-                                        <h:outputText value="#{registro.idUser}"/>
+                                      <h:outputText value="#{registro.idUser}"/>
                                     </f:facet>
                                     <f:facet name="input">
-                                        <p:inputText id="modelInput" value="#{registro.idUser}" style="width:100%"/>
+                                        <p:inputText id="modelInput" 
+                                                     value="#{registro.idUser}" 
+                                                     style="width:100%"/>
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
                             <p:column headerText="Contraseña">
                                 <p:cellEditor>
                                     <f:facet name="output">
-                                        <h:outputText value="#{registro.contraseña}"/>
+                                  <h:outputText value="#{registro.contraseña}"/>
                                     </f:facet>
                                     <f:facet name="input">
-                                        <p:inputText value="#{registro.contraseña}" style="width:100%" label="Name"/>
+                                    <p:inputText value="#{registro.contraseña}" 
+                                                 style="width:100%" 
+                                                 label="Name"/>
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
                             <p:column headerText="Nombre">
                                 <p:cellEditor>
                                     <f:facet name="output">
-                                        <h:outputText value="#{registro.nombre}"/>
+                                      <h:outputText value="#{registro.nombre}"/>
                                     </f:facet>
                                     <f:facet name="input">
-                                        <p:inputText id="nombre" value="#{registro.nombre}" style="width:100%" label="Name"/>
+                                        <p:inputText id="nombre" 
+                                                     value="#{registro.nombre}" 
+                                                     style="width:100%" 
+                                                     label="Name"/>
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
@@ -64,54 +85,76 @@
                                         <h:outputText value="#{registro.rol}"/>
                                     </f:facet>
                                     <f:facet name="input">
-                                        <p:inputText value="#{registro.rol}" style="width:100%" label="Name"/>
+                                        <p:inputText value="#{registro.rol}" 
+                                                     style="width:100%" 
+                                                     label="Name"/>
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
 
 
                             <p:column style="width:6rem"  headerText="Editar">
-                                <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                                <p:rowEditor editTitle="Edit Row" 
+                                             cancelTitle="Cancel Edit" 
+                                             saveTitle="Save Row"/>
                             </p:column>
 
                             <p:column style="width:6rem"  headerText="">
-                                <p:commandButton action="#{user.eliminarRegistro(registro)}"
-                                                 value="Eliminar"
-                                                 update=":form:idTable" icon="pi pi-trash"   styleClass="ui-button-danger" ></p:commandButton>
+                                <!-- Se habilita commandButton que acciona el
+                                método eliminar registro para borrar un elemento 
+                                de la tabla-->
+                                <p:commandButton 
+                                    action="#{user.eliminarRegistro(registro)}"
+                                    value="Eliminar"
+                                    update=":form:idTable" 
+                                    icon="pi pi-trash"   
+                                    styleClass="ui-button-danger" >
+                                </p:commandButton>
                             </p:column>
                         </p:dataTable>
                     </p:fieldset>
-                  
                 </h:form>
-
-
-
-                <p:dialog widgetVar="ventana" header="Nuevo" modal="true" resizable="false" showEffect="clip">
-                    <p:ajax event="close" listener="#{user.limpiar()}" update=":v" />
+                 <!-- Se define un p:dialog cuya función es mostrar una ventana 
+                emergente para el registro de un nuevo usuario en la base de 
+                 datos -->
+                <p:dialog widgetVar="ventana" header="Nuevo" modal="true" 
+                          resizable="false" showEffect="clip">
+                     <!--cuando se cierra la ventana se llama a la función 
+                    limpiar para que los campos queden vacíos para la próxima 
+                    vez que sean utilizados-->
+                    <p:ajax event="close" listener="#{user.limpiar()}" 
+                            update=":v" />
                     <h:form id="v">
-
+                        <!-- se agregan inputText, cada uno corresponde a un
+                            atributo del objeto usuario el cual se registra en 
+                            la base de datos una vez que se acciona el método 
+                            crear registro cuando se pulsa el commandButton-->
                         <h:panelGrid id="idPanel" columns="2">
-                            <h:outputLabel value="Ingrese el usuario"></h:outputLabel>
-                            <p:inputText id="idNombre" value="#{user.usuarios.nombre}"></p:inputText>
-                            <h:outputLabel value="Ingrese contraseña"></h:outputLabel>
-                            <p:inputText id="idContraseña" value="#{user.usuarios.contraseña}"></p:inputText>
-                            <h:outputLabel value="Ingrese el rol"></h:outputLabel>
-                            <p:inputText id="idRol" value="#{user.usuarios.rol}"></p:inputText>
+                            <h:outputLabel value="Ingrese el usuario">
+                            </h:outputLabel>
+                            
+                            <p:inputText id="idNombre" 
+                                         value="#{user.usuarios.nombre}">
+                            </p:inputText>
+                            <h:outputLabel value="Ingrese contraseña">
+                            </h:outputLabel>
+                            <p:inputText id="idContraseña" 
+                                         value="#{user.usuarios.contraseña}">
+                            </p:inputText>
+                            <h:outputLabel value="Ingrese el rol">
+                            </h:outputLabel>
+                            <p:inputText id="idRol" 
+                                         value="#{user.usuarios.rol}">
+                            </p:inputText>
                             <p:commandButton action="#{user.crearRegistro()}"
                                              value="Guardar registro"
                                              update=":form:idTable"
-                                             oncomplete="PF('ventana').hide()"
-                                             ></p:commandButton>
-
+                                             oncomplete="PF('ventana').hide()">
+                            </p:commandButton>
                         </h:panelGrid>
                     </h:form>
                 </p:dialog> 
-
-
             </ui:define>
-
-
         </ui:composition>
-
     </body>
 </html>

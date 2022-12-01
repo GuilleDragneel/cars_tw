@@ -1,10 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' ?> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
+    <!-- Estructura de la página-->
     <h:head>
+        <!-- Se incluyen archivos css para dar estilos a la página  -->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="/css/default.css"/>
         <h:outputStylesheet name="/css/cssLayout.css"/>
@@ -14,7 +17,9 @@
     </h:head>
 
     <h:body>
-
+        <!-- Se define estructura de la página, cada sección hace una llamada a
+        su respectivo archivo htmlx el cual contiene la implementación de la
+        sección -->
         <div id="top">
             <ui:insert name="top">
                 <ui:include src="header.xhtml"></ui:include>
@@ -30,6 +35,5 @@
                 <ui:include src="footer.xhtml"></ui:include>
             </ui:insert>
         </div>
-
     </h:body>
 </html>

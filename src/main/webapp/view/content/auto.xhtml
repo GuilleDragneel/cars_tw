@@ -8,6 +8,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
+        <!-- Interfaz de la sección autos, que muestra los usuarios 
+        registrados en base de datos y que lleva a cabo el CRUD -->
 
         <ui:composition template="./../templates/index.xhtml">
 
@@ -20,7 +22,7 @@
                     la ventana para registrar un auto -->
                     <p:toolbar>
                         <p:toolbarGroup>
-                            <p:commandButton value="New" icon="pi pi-plus"
+                            <p:commandButton value="Nuevo" icon="pi pi-plus"
                                              update="" 
                                              oncomplete="PF('ventana2').show()"
                                              styleClass="ui-button-success" 
@@ -28,9 +30,10 @@
                             </p:commandButton>
                         </p:toolbarGroup>
                     </p:toolbar>   
-                    <!-- Se define tabla con sus respectivas columnas para 
-                    mostrar los datos almacenados enla tabla autos de nuestra 
-                    base de datos -->
+                    <!-- Se define datatable con sus respectivas column para 
+                    mostrar los datos almacenados en la tabla autos de nuestra 
+                    base de datos, los datos se muestran llamando al objeto 
+                    registro con su respectivo atributo para cada columna-->
                     <p:fieldset legend="Autos"  toggleable="true">
                         <p:dataTable id="idTable2" var="registro" 
                                      value="#{car.listaRegistros}" 
@@ -120,14 +123,17 @@
                                 </p:cellEditor>
                             </p:column>
 
-
+                            
                             <p:column style="width:6rem"  headerText="Editar">
                                 <p:rowEditor editTitle="Edit Row" 
                                              cancelTitle="Cancel Edit" 
                                              saveTitle="Save Row"/>
                             </p:column>
-
+                            
                             <p:column style="width:6rem"  headerText="">
+                                <!-- Se habilita commandButton que acciona el
+                                método eliminar registro para borrar un elemento 
+                                de la tabla-->
                                 <p:commandButton 
                                     action="#{car.eliminarRegistro(registro)}"
                                     value="Eliminar"
@@ -153,6 +159,10 @@
                     <p:ajax event="close" listener="#{car.limpiar()}" 
                             update=":v" />
                     <h:form id="v">
+                        <!-- se agregan inputText, cada uno corresponde a un
+                            atributo del objeto autos el cual se registra en 
+                            la base de datos una vez que se acciona el método 
+                            crear registro cuando se pulsa el commandButton-->
                         <h:panelGrid id="idPanel" columns="2">
                             <h:outputLabel value="Descripcion"></h:outputLabel>
                             <p:inputText id="idDescripcion" 
@@ -174,21 +184,16 @@
                             <p:inputText id="idPrecio" 
                                          value="#{car.autos.precio}">
                             </p:inputText>
+                            
                             <p:commandButton action="#{car.crearRegistro()}"
                                              value="Guardar registro"
                                              update=":form2:idTable2"
                                              oncomplete="PF('ventana2').hide()"
                                              ></p:commandButton>
-
                         </h:panelGrid>
                     </h:form>
                 </p:dialog> 
-
-
             </ui:define>
-
-
         </ui:composition>
-
     </body>
 </html>
