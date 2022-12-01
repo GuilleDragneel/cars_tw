@@ -166,7 +166,7 @@
                                          >
                             </p:password>
                             <p:message for="idContraseña"></p:message>
-                            <h:outputLabel for="idValidar" value="Verifique contraseña">
+                    <h:outputLabel for="idValidar" value="Verifique contraseña">
                             </h:outputLabel>
                             <p:password id="idValidar" 
                                          value="#{user.usuarios.contraseña}"
@@ -184,7 +184,6 @@
                             <p:commandButton action="#{user.crearRegistro()}"
                                              value="Guardar registro"
                                              update=":form:idTable"
-                                             ajax="false"
                                              oncomplete="PF('ventana').hide()">
                             </p:commandButton>
                         </h:panelGrid>

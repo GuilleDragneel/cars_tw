@@ -32,7 +32,7 @@ public class AutosController {
 
     public void crearRegistro() {
         service.insertarRegistro(autos);
-        System.out.println("guardardado exitosamente");
+        listaRegistros = service.obtenerRegistros();
     }
 
     public void setAutos(Autos autos) {
