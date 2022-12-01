@@ -50,8 +50,11 @@ public class AutosController {
     public void onRowEdit(RowEditEvent event) {
         autos = (Autos) event.getObject();
         service.actualizarRegistro(autos);
-        FacesMessage mensaje = new FacesMessage("Registro editado exitosamente");
-        FacesContext.getCurrentInstance().addMessage(null, mensaje);
+        listaRegistros = service.obtenerRegistros();
+        FacesMessage mensaje = 
+                new FacesMessage("Registro editado exitosamente");
+        FacesContext.getCurrentInstance().
+                addMessage(null, mensaje);    
     }
 
     public void eliminarRegistro(Autos autos) {
