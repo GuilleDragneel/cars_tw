@@ -23,7 +23,7 @@
                     <p:toolbar>
                         <p:toolbarGroup>
                             <p:commandButton value="Nuevo" icon="pi pi-plus"
-                                             update="" 
+                                             update=":v" 
                                              oncomplete="PF('ventana2').show()"
                                              styleClass="ui-button-success" 
                                              style="margin-right: .5rem">
@@ -38,7 +38,18 @@
                         <p:dataTable id="idTable2" var="registro" 
                                      value="#{car.listaRegistros}" 
                                      editable="true"
-                                     style="margin-bottom:20px">
+                                     style="margin-bottom:20px"
+                                     rows="10"
+                                     paginator="true" paginatorPosition="both"
+                                     paginatorTemplate="{CurrentPageReport} 
+                                     {FirstPageLink} {PreviousPageLink} 
+                                     {PageLinks} {NextPageLink} {LastPageLink} 
+                                     {RowsPerPageDropdown}"
+                                     currentPageReportTemplate=
+                                     "{startRecord}-{endRecord}
+                                     of {totalRecords} records"
+                                     rowsPerPageTemplate="5,10,{ShowAll|'All'}"
+                                     >
 
                             <p:ajax event="rowEdit" 
                                     listener="#{car.onRowEdit(event)}" 
@@ -163,32 +174,56 @@
                             atributo del objeto autos el cual se registra en 
                             la base de datos una vez que se acciona el método 
                             crear registro cuando se pulsa el commandButton-->
-                        <h:panelGrid id="idPanel" columns="2">
-                            <h:outputLabel value="Descripcion"></h:outputLabel>
+                        <h:panelGrid id="idPanel" columns="3">
+                            <h:outputLabel for="idDescripcion" 
+                                           value="Descripcion"></h:outputLabel>
                             <p:inputText id="idDescripcion" 
-                                         value="#{car.autos.descripcion}">
+                                         value="#{car.autos.descripcion}"
+                                         required="true">
                             </p:inputText>
-                            <h:outputLabel value="Marca"></h:outputLabel>
+                            <p:message for="idDescripcion"></p:message>
+                            <h:outputLabel for="idMarca"
+                                           value="Marca"></h:outputLabel>
                             <p:inputText id="idMarca" 
-                                         value="#{car.autos.marca}">
+                                         value="#{car.autos.marca}"
+                                         required="true">
                             </p:inputText>
-                            <h:outputLabel value="Modelo"></h:outputLabel>
+                            <p:message for="idMarca"></p:message>
+                            <h:outputLabel for="idModelo"
+                                           value="Modelo"></h:outputLabel>
                             <p:inputText id="idModelo" 
-                                         value="#{car.autos.modelo}">
+                                         value="#{car.autos.modelo}"
+                                         required="true">
                             </p:inputText>
-                            <h:outputLabel value="Placas"></h:outputLabel>
+                            <p:message for="idModelo"></p:message>
+                            <h:outputLabel for="idPlacas"
+                                           value="Placas"></h:outputLabel>
                             <p:inputText id="idPlacas" 
-                                         value="#{car.autos.placas}">
+                                         value="#{car.autos.placas}"
+                                         required="true">
+                               
                             </p:inputText>
-                            <h:outputLabel value="Precio"></h:outputLabel>
+                            <p:message for="idPlacas"></p:message>
+                            <h:outputLabel for="idPrecio"
+                                           value="Precio"></h:outputLabel>
                             <p:inputText id="idPrecio" 
-                                         value="#{car.autos.precio}">
+                                         value="#{car.autos.precio}"
+                                         required="true"
+                                         >
+                                <f:validateLongRange for="idPrecio" 
+                                                     minimum="1000" 
+                                                     maximum="100000">                                              
+                                </f:validateLongRange>
                             </p:inputText>
+                            <p:message for="idPrecio"></p:message>
                             
                             <p:commandButton action="#{car.crearRegistro()}"
+                                             
                                              value="Guardar registro"
                                              update=":form2:idTable2"
-                                             oncomplete="PF('ventana2').hide()"
+                                             ajax="false"
+                                             oncomplete="PF('ventana2').close()" 
+                                             
                                              ></p:commandButton>
                         </h:panelGrid>
                     </h:form>

@@ -22,7 +22,7 @@
                     <p:toolbar>
                         <p:toolbarGroup>
                             <p:commandButton value="Nuevo" icon="pi pi-plus"
-                                             update="" 
+                                             update=":v" 
                                              oncomplete="PF('ventana').show()"
                                              styleClass="ui-button-success" 
                                              style="margin-right: .5rem">
@@ -37,7 +37,19 @@
                         <p:dataTable id="idTable" var="registro" 
                                      value="#{user.listaRegistros}" 
                                      editable="true"
-                                     style="margin-bottom:20px">
+                                     style="margin-bottom:20px"
+                                     rows="10"
+                                     paginator="true" paginatorPosition="both"
+                                     paginatorTemplate="{CurrentPageReport} 
+                                     {FirstPageLink} {PreviousPageLink} 
+                                     {PageLinks} {NextPageLink} {LastPageLink} 
+                                     {RowsPerPageDropdown}"
+                                     currentPageReportTemplate=
+                                     "{startRecord}-{endRecord}
+                                     of {totalRecords} records"
+                                     rowsPerPageTemplate="5,10,{ShowAll|'All'}"
+                                     
+                                     >
 
                             <p:ajax event="rowEdit" listener="#{user.onRowEdit}" 
                                     update=":form:msgs"/>
@@ -129,27 +141,51 @@
                             atributo del objeto usuario el cual se registra en 
                             la base de datos una vez que se acciona el método 
                             crear registro cuando se pulsa el commandButton-->
-                        <h:panelGrid id="idPanel" columns="2">
-                            <h:outputLabel value="Ingrese el usuario">
+                        <h:panelGrid id="idPanel" columns="3">
+                            <h:outputLabel for="idNombre" 
+                                           value="Ingrese el usuario">
                             </h:outputLabel>
-                            
                             <p:inputText id="idNombre" 
-                                         value="#{user.usuarios.nombre}">
+                                         value="#{user.usuarios.nombre}"
+                                         required="true">
                             </p:inputText>
-                            <h:outputLabel value="Ingrese contraseña">
+                            <p:message for="idNombre"></p:message>
+                            <h:outputLabel for="idContraseña" 
+                                           value="Ingrese contraseña">
                             </h:outputLabel>
-                            <p:inputText id="idContraseña" 
-                                         value="#{user.usuarios.contraseña}">
-                            </p:inputText>
-                            <h:outputLabel value="Ingrese el rol">
+                            <p:password id="idContraseña" 
+                                         value="#{user.usuarios.contraseña}"
+                                         match="idValidar"
+                                         feedback="true"
+                                         validatorMessage="Contraseñas 
+                                                           no coinciden"
+                                         weakLabel="Débil"
+                                         strongLabel="Segura"
+                                         goodLabel="Fuerte"
+                                         required="true"
+                                         >
+                            </p:password>
+                            <p:message for="idContraseña"></p:message>
+                            <h:outputLabel for="idValidar" value="Verifique contraseña">
+                            </h:outputLabel>
+                            <p:password id="idValidar" 
+                                         value="#{user.usuarios.contraseña}"
+                                         feedback="true"
+                                         required="true">
+                            </p:password>
+                            <p:message for="idValidar"></p:message>
+                            <h:outputLabel for="idRol" value="Ingrese el rol">
                             </h:outputLabel>
                             <p:inputText id="idRol" 
-                                         value="#{user.usuarios.rol}">
+                                         value="#{user.usuarios.rol}"
+                                         required="true">
                             </p:inputText>
+                            <p:message for="idRol"></p:message>
                             <p:commandButton action="#{user.crearRegistro()}"
                                              value="Guardar registro"
                                              update=":form:idTable"
-                                             oncomplete="PF('ventana').hide()">
+                                             ajax="false"
+                                             oncomplete="PF('ventana').show()">
                             </p:commandButton>
                         </h:panelGrid>
                     </h:form>
