@@ -37,7 +37,6 @@ public class AutosModelImpl implements IAutosModel  {
             sesion.close();
             sf.close();
         } catch (HibernateException e) {
-            System.out.println("Error" + e.getMessage());
         }
     }
     /**
@@ -54,7 +53,6 @@ public class AutosModelImpl implements IAutosModel  {
             sesion.close();
             sf.close();
         } catch (HibernateException e) {
-            System.out.println("Error" + e.getMessage());
         }
         return listaUsuarios;
     }
@@ -73,7 +71,6 @@ public class AutosModelImpl implements IAutosModel  {
             sesion.close();
             sf.close();
         } catch (HibernateException e) {
-            System.out.println("Error" + e.getMessage());
         }
     }
     /**
@@ -91,7 +88,6 @@ public class AutosModelImpl implements IAutosModel  {
             sesion.close();
             sf.close();
         } catch (HibernateException e) {
-            System.out.println("Error" + e.getMessage());
         }
     }
 }
