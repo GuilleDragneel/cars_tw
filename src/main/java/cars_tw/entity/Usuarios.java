@@ -1,7 +1,7 @@
 /**
  * Autor: Guillermo Daniel Cruz Ortega
- * Creación: 22/10/2022
- * Actualización: 29/10/2022
+ * Creación: 22/11/2022
+ * Actualización: 29/11/2022
  * Descripción: Clase creada a partir de la base de datos de usuarios
  */
 package cars_tw.entity;

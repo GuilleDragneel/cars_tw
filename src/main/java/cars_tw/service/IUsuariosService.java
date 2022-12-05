@@ -1,7 +1,7 @@
 /**
  * Autor: Jazziel Pérez Hernández
  * Creación: 22/11/2022
- * Actualización: 01/12/2022
+ * Actualización: 30/11/2022
  * Descripción:Interface IUsuariosService
  */
 package cars_tw.service;
