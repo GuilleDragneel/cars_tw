@@ -1,5 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "
+    http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+ * Autor: Griselda Medina Avendaño & Leonel Alexis García Juárez
+ * Creación: 22/11/2022
+ * Actualización: 01/12/2022
+ * Descripción: vista autos
+ -->
+
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -7,78 +16,115 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
+        <!-- Interfaz de la sección autos, que muestra los usuarios 
+        registrados en base de datos y que lleva a cabo el CRUD -->
 
         <ui:composition template="./../templates/index.xhtml">
 
             <ui:define name="content">
-                <h:form id="form">
-                    <p:growl id="msgs" showDetail="true"/>
+                <!-- Se define form que contiene a la tabla con datos de auto 
+                que se mostrará al usuario -->
+                <h:form id="form2">
+                    <p:growl id="msgs2" showDetail="true"/>
+                    <!-- se crea toolbar group que contiene el botón que dispara 
+                    la ventana para registrar un auto -->
+                    <p:toolbar>
+                        <p:toolbarGroup>
+                            <p:commandButton value="Nuevo" icon="pi pi-plus"
+                                             update=":v" 
+                                             oncomplete="PF('ventana2').show()"
+                                             styleClass="ui-button-success" 
+                                             style="margin-right: .5rem">
+                            </p:commandButton>
+                        </p:toolbarGroup>
+                    </p:toolbar>   
+                    <!-- Se define datatable con sus respectivas column para 
+                    mostrar los datos almacenados en la tabla autos de nuestra 
+                    base de datos, los datos se muestran llamando al objeto 
+                    registro con su respectivo atributo para cada columna-->
+                    <p:fieldset legend="Autos"  toggleable="true">
+                        <p:dataTable id="idTable2" var="registro" 
+                                     value="#{car.listaRegistros}" 
+                                     editable="true"
+                                     style="margin-bottom:20px"
+                                     rows="10"
+                                     paginator="true" paginatorPosition="both"
+                                     paginatorTemplate="{CurrentPageReport} 
+                                     {FirstPageLink} {PreviousPageLink} 
+                                     {PageLinks} {NextPageLink} {LastPageLink} 
+                                     {RowsPerPageDropdown}"
+                                     currentPageReportTemplate=
+                                     "{startRecord}-{endRecord}
+                                     of {totalRecords} records"
+                                     rowsPerPageTemplate="5,10,{ShowAll|'All'}"
+                                     >
 
-                    <div class="card">
-                        
-
-                        <p:toolbar>
-                            <p:toolbarGroup>
-                                <p:commandButton value="New" icon="pi pi-plus"
-                                                 update="" oncomplete="PF('ventana').show()"
-                                                 styleClass="ui-button-success" style="margin-right: .5rem">
-                                </p:commandButton>
-                            </p:toolbarGroup>
-                        </p:toolbar>            
-                        <p:fieldset legend="Autos"  toggleable="true">
-                        <p:dataTable id="idTable" var="registro" value="#{car.listaRegistros}" editable="true"
-                                     style="margin-bottom:20px">
-
-                            <p:ajax event="rowEdit" listener="#{car.onRowEdit}" update=":form:msgs"/>
-                            <p:column headerText="Id Auto">
+                            <p:ajax event="rowEdit" 
+                                    listener="#{car.onRowEdit(event)}" 
+                                    update=":form2:msgs2"/>
+                            <p:column headerText="IdAuto">
                                 <p:cellEditor>
                                     <f:facet name="output">
                                         <h:outputText value="#{registro.id}"/>
                                     </f:facet>
                                     <f:facet name="input">
-                                        <p:inputText id="modelInput" value="#{registro.id}" style="width:100%"/>
+                                        <p:inputText id="modelInput" 
+                                                     value="#{registro.id}" 
+                                                     style="width:100%"/>
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
                             <p:column headerText="Descripción">
                                 <p:cellEditor>
                                     <f:facet name="output">
-                                        <h:outputText value="#{registro.descripcion}"/>
+                                        <h:outputText 
+                                            value="#{registro.descripcion}"/>
                                     </f:facet>
                                     <f:facet name="input">
-                                        <p:inputText value="#{registro.descripcion}" style="width:100%" label="Name"/>
+                                        <p:inputText 
+                                            value="#{registro.descripcion}" 
+                                            style="width:100%" label="Name"/>
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
-                            <p:column headerText="Modelo">
+                            <p:column headerText="Marca">
                                 <p:cellEditor>
                                     <f:facet name="output">
-                                        <h:outputText value="#{registro.modelo}"/>
+                                       <h:outputText value="#{registro.marca}"/>
                                     </f:facet>
                                     <f:facet name="input">
-                                        <p:inputText id="nombre" value="#{registro.modelo}" style="width:100%" label="Name"/>
+                                        <p:inputText id="nombre" 
+                                                     value="#{registro.marca}" 
+                                                     style="width:100%" 
+                                                     label="Name"/>
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
 
-                            <p:column headerText="Marca">
+                            <p:column headerText="Modelo">
                                 <p:cellEditor>
                                     <f:facet name="output">
-                                        <h:outputText value="#{registro.marca}"/>
+                                        <h:outputText 
+                                            value="#{registro.modelo}"/>
                                     </f:facet>
                                     <f:facet name="input">
-                                        <p:inputText value="#{registro.marca}" style="width:100%" label="Name"/>
+                                        <p:inputText 
+                                            value="#{registro.modelo}" 
+                                            style="width:100%" 
+                                            label="Name"/>
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
-                            
+
                             <p:column headerText="Placas">
                                 <p:cellEditor>
                                     <f:facet name="output">
-                                        <h:outputText value="#{registro.placas}"/>
+                                      <h:outputText value="#{registro.placas}"/>
                                     </f:facet>
                                     <f:facet name="input">
-                                        <p:inputText value="#{registro.placas}" style="width:100%" label="Name"/>
+                                        <p:inputText value="#{registro.placas}" 
+                                                     style="width:100%" 
+                                                     label="Name"/>
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
@@ -86,61 +132,111 @@
                             <p:column headerText="Precio">
                                 <p:cellEditor>
                                     <f:facet name="output">
-                                        <h:outputText value="#{registro.precio}"/>
+                                      <h:outputText value="#{registro.precio}"/>
                                     </f:facet>
                                     <f:facet name="input">
-                                        <p:inputText value="#{registro.precio}" style="width:100%" label="Name"/>
+                                        <p:inputText value="#{registro.precio}" 
+                                                     style="width:100%" 
+                                                     label="Name"/>
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
 
+                            
                             <p:column style="width:6rem"  headerText="Editar">
-                                <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                                <p:rowEditor editTitle="Edit Row" 
+                                             cancelTitle="Cancel Edit" 
+                                             saveTitle="Save Row"/>
                             </p:column>
-
+                            
                             <p:column style="width:6rem"  headerText="">
-                                <p:commandButton action="#{car.eliminarRegistro(registro)}"
-                                                 value="Eliminar"
-                                                 update=":form:idTable" icon="pi pi-trash"   styleClass="ui-button-danger" ></p:commandButton>
+                                <!-- Se habilita commandButton que acciona el
+                                método eliminar registro para borrar un elemento 
+                                de la tabla-->
+                                <p:commandButton 
+                                    action="#{car.eliminarRegistro(registro)}"
+                                    value="Eliminar"
+                                    update=":form2:idTable2" 
+                                    icon="pi pi-trash"   
+                                    styleClass="ui-button-danger" >
+                                </p:commandButton>
                             </p:column>
                         </p:dataTable>
-                        </p:fieldset>
-                    </div>
-                </h:form>
+                    </p:fieldset>
+                               </h:form>
 
 
-
-                <p:dialog widgetVar="ventana" header="Nuevo auto" modal="true" resizable="false" showEffect="clip">
-                    <p:ajax event="close" listener="#{car.limpiar()}" update=":v" />
+                <!-- Se define un p:dialog cuya función es mostrar una ventana 
+                emergente para el registro de un nuevo auto en la base de datos
+                -->
+                <p:dialog widgetVar="ventana2" 
+                          header="Nuevo" modal="true" resizable="false" 
+                          showEffect="clip">
+                    <!--cuando se cierra la ventana se llama a la función 
+                    limpiar para que los campos queden vacíos para la próxima 
+                    vez que sean utilizados-->
+                    <p:ajax event="close" listener="#{car.limpiar()}" 
+                            update=":v" />
                     <h:form id="v">
-
-                        <h:panelGrid id="idPanel" columns="2">
-                            <h:outputLabel value="Descripción"></h:outputLabel>
-                            <p:inputText id="idNombre" value="#{car.autos.descripcion}"></p:inputText>
-                            <h:outputLabel value="Marca"></h:outputLabel>
-                            <p:inputText id="idContraseña" value="#{car.autos.marca}"></p:inputText>
-                            <h:outputLabel value="Modelo"></h:outputLabel>
-                            <p:inputText id="idModelo" value="#{car.autos.modelo}"></p:inputText>
-                            <h:outputLabel value="Placas"></h:outputLabel>
-                            <p:inputText id="idPlacas" value="#{car.autos.placas}"></p:inputText>
-                            <h:outputLabel value="Precio"></h:outputLabel>
-                            <p:inputText id="idPrecio" value="#{car.autos.precio}"></p:inputText>
+                        <!-- se agregan inputText, cada uno corresponde a un
+                            atributo del objeto autos el cual se registra en 
+                            la base de datos una vez que se acciona el método 
+                            crear registro cuando se pulsa el commandButton-->
+                        <h:panelGrid id="idPanel" columns="3">
+                            <h:outputLabel for="idDescripcion" 
+                                           value="Descripcion"></h:outputLabel>
+                            <p:inputText id="idDescripcion" 
+                                         value="#{car.autos.descripcion}"
+                                         required="true">
+                            </p:inputText>
+                            <p:message for="idDescripcion"></p:message>
+                            <h:outputLabel for="idMarca"
+                                           value="Marca"></h:outputLabel>
+                            <p:inputText id="idMarca" 
+                                         value="#{car.autos.marca}"
+                                         required="true">
+                            </p:inputText>
+                            <p:message for="idMarca"></p:message>
+                            <h:outputLabel for="idModelo"
+                                           value="Modelo"></h:outputLabel>
+                            <p:inputText id="idModelo" 
+                                         value="#{car.autos.modelo}"
+                                         required="true">
+                            </p:inputText>
+                            <p:message for="idModelo"></p:message>
+                            <h:outputLabel for="idPlacas"
+                                           value="Placas"></h:outputLabel>
+                            <p:inputText id="idPlacas" 
+                                         value="#{car.autos.placas}"
+                                         required="true">
+                               
+                            </p:inputText>
+                            <p:message for="idPlacas"></p:message>
+                            <h:outputLabel for="idPrecio"
+                                           value="Precio"></h:outputLabel>
+                            <p:inputText id="idPrecio" 
+                                         value="#{car.autos.precio}"
+                                         required="true"
+                                         >
+                                <f:validateLongRange for="idPrecio" 
+                                                     minimum="1000" 
+                                                     maximum="100000">                                              
+                                </f:validateLongRange>
+                            </p:inputText>
+                            <p:message for="idPrecio"></p:message>
                             
                             <p:commandButton action="#{car.crearRegistro()}"
+                                             
                                              value="Guardar registro"
-                                             update=":form:idTable"
-                                             oncomplete="PF('ventana').hide()"
+                                             update=":form2:idTable2"
+                                             ajax="false"
+                                             oncomplete="PF('ventana2').close()" 
+                                             
                                              ></p:commandButton>
-
                         </h:panelGrid>
                     </h:form>
                 </p:dialog> 
-
-
             </ui:define>
-
-
         </ui:composition>
-
     </body>
 </html>
